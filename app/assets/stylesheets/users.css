@@ -1,0 +1,18 @@
+.spoiler{ 
+  color: black; 
+  background-color:black;
+}
+
+.spoiler:hover { 
+  background-color:white; 
+}
+
+.help-text {
+  font-size:14px;
+  color:gray;
+  font-style:italic;
+}
+
+.no-left-pad {
+  padding-left:0px !important;
+}

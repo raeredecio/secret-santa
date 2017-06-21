@@ -1,0 +1,39 @@
+<h3 class="headline m-top-md">
+  Upload List
+  <span class="line"></span>
+</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="flash_div">
+      <%= render 'flash_messages', flash: flash %>
+    </div>
+<%= form_tag upload_csv_users_path, method: :post, class: "form-horizontal" do %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Upload new set of participants</strong>
+      </div>
+      <div class="panel-body">	
+	    <div class="form-group">
+		  <%= label_tag :file, "File Upload (CSV only)", :class => 'control-label col-lg-3' %>
+		  <div class="col-lg-5">
+		    <%= file_field_tag :file,  :accept => 'text/csv', required: true %>
+		  </div>
+		</div>
+	
+
+		<div class="form-group">
+	      <div class="col-lg-3"></div>
+	      <div class="col-lg-3">
+	        <%= button_tag type: "submit", :class => 'btn btn-info btn-fill' do %>
+	            Upload
+	        <% end %>
+	      </div>
+	    </div> 
+      </div>
+  	</div>
+
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SecretSanta</title>
+    <%= stylesheet_link_tag    'application', params[:controller], media: 'all'%>
+    <%= javascript_include_tag 'application', params[:controller]%>
+	  <%= csrf_meta_tags %>	
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="turbolinks-cache-control" content="no-cache">
+  </head>
+
+  <body class="overflow-hidden">
+ 	<!-- for pluggable_js -->
+  	<%= javascript_pluggable_tag %>
+   
+    <div id="wrapper" class="preload">
+      <!-- Top Nav -->
+      <div id="top-nav" class="skin-6 fixed">
+        <div class="brand">
+            SecretSanta
+        </div><!-- /brand -->
+      	<div class="brand-overlay">
+      		
+      	</div>
+    
+      </div>
+   
+
+      <!-- Sidebar -->
+      <aside class="fixed skin-6">
+      	<div class="sidebar-overlay"></div>
+          <div class="sidebar-inner scrollable-sidebar" id="sidebar-scroll">
+           
+          
+            <!-- Menu -->
+            <div class="main-menu">
+              <ul>
+                <li class="upload_users_menu">
+                  <a href="<%= upload_users_path %>">
+                    <i class="fa fa-upload dashboard_icon"></i>
+                    <span class="text">
+                      Upload New List
+                    </span>
+                    <span class="menu-hover"></span>
+                  </a>
+                </li>
+
+                <li class="users_menu">
+                  <a href="<%= users_path %>">
+                    <i class="fa fa-list dashboard_icon"></i>
+                    <span class="text">
+                      Participants List
+                    </span>
+                    <span class="menu-hover"></span>
+                  </a>
+                </li>
+
+                <li class="get_santas_menu">
+                  <a href="<%= get_santas_users_path %>">
+                    <i class="fa fa-gift dashboard_icon"></i>
+                    <span class="text">
+                      Start Secret Santa
+                    </span>
+                    <span class="menu-hover"></span>
+                  </a>
+                </li>
+            
+              </ul>
+            </div><!-- /main-menu -->
+          </div><!-- /sidebar-inner scrollable-sidebar -->
+
+      </aside> <!-- /sidebar -->
+
+      <div class="topper">
+        <div class="row">
+        <div class="col-sm-12 text-center">
+          <p class="no-margin">
+            Redecio R. 2017
+          </p>
+        </div><!-- /.col -->
+      </div><!-- /.row-->
+      </div>
+      <div id="main-container">
+        <div class="padding-md">
+          <%= yield %>
+        </div><!-- /.padding -->
+      </div><!-- /main-container -->
+
+    </div><!-- /wrapper -->
+
+    
+  </body>
+</html>
+
+
+
