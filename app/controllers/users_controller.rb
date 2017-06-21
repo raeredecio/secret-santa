@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
 	#user input CSV. Format: 1st column is name, 2nd column is partner name, not case sensitive
 	def upload_csv
-		csv_text = open(params[:file]).read
+		csv_text = open(params[:file].tempfile).read
 		success = CsvReader.new(csv_text).process_names
 
 		if success
