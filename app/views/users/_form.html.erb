@@ -11,7 +11,7 @@
       <% end %>
     </div>
     <div class="panel panel-default">
-      <%= form_for @user, :html => { :class => 'form-horizontal', :"novalidate" => ""} do |f| %>
+      <%= form_for @user, :html => { :class => 'form-horizontal', :"novalidate" => "",  :autocomplete => :off } do |f| %>
         <div class="panel-heading">
           <strong>User Form</strong>
         </div>

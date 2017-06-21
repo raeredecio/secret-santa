@@ -8,7 +8,8 @@
     <div class="flash_div">
       <%= render 'flash_messages', flash: flash %>
     </div>
-<%= form_tag upload_csv_users_path, method: :post, class: "form-horizontal" do %>
+<%= form_tag upload_csv_users_path, method: :post, class: "form-horizontal",
+  multipart: true,  :autocomplete => :off do %>
 
     <div class="panel panel-default">
       <div class="panel-heading">
