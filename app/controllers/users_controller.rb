@@ -36,10 +36,15 @@ class UsersController < ApplicationController
 	#user input CSV. Format: 1st column is name, 2nd column is partner name, not case sensitive
 	def upload_csv
 		csv_text = open(params[:file]).read
-		CsvReader.new(csv_text).process_names
+		success = CsvReader.new(csv_text).process_names
 
-		flash[:success] = "Successfully uploaded new list of participants."
-		redirect_to users_path
+		if success
+			flash[:success] = "Successfully uploaded new list of participants."
+			redirect_to users_path
+		else
+			flash[:error] = "Bad CSV uploaded. Please try another"
+			redirect_to root_path
+		end
 	end
 
 	def assign_santas

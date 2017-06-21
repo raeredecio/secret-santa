@@ -89,6 +89,8 @@ class User < ActiveRecord::Base
 
 	#method for assigning valid santa to everyone
 	def self.assign_secret_santas
+
+		return {status: :error, message: "No participants yet!"} if User.active.count==0
 		#catch exception in transaction (when no valid combination is possible)
 		begin
 			User.transaction do #use transaction so rollback is possible for a failed round
