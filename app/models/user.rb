@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :name
 	validates_uniqueness_of :name, :case_sensitive => false #name uniqueness is not case sensitive
 	validates_uniqueness_of :secret_santa_id, :allow_nil => true #can only have 1 santa
-	validate :new_santa_constraint, on: :create #custom validation is for on create only, user can only update "active" manually; secret santa assignment logic is in transaction so it's tricky
+	validate :new_santa_constraint, #custom validation
 
 	accepts_nested_attributes_for :partner, :reject_if => lambda { |x| x[:name].blank? } #do not create if nest is not filled up
 
@@ -22,19 +22,21 @@ class User < ActiveRecord::Base
 
 	#custom validation
 	def new_santa_constraint
-		#make sure new santa is not same as old santa
-		if previous_secret_santa_id && previous_secret_santa_id == secret_santa_id
-			errors.add(:secret_santa_id, "can't be same as previous")
-		end
+		if secret_santa_id #validation only happens when a secret santa is assigned/present
+			#make sure new santa is not same as old santa
+			if previous_secret_santa_id && previous_secret_santa_id == secret_santa_id
+				errors.add(:secret_santa_id, "can't be same as previous")
+			end
 
-		#make sure santa is not same as partner
-		if partner_id && partner_id == secret_santa_id
-			errors.add(:secret_santa_id, "can't be same as partner")
-		end
+			#make sure santa is not same as partner
+			if partner_id && partner_id == secret_santa_id
+				errors.add(:secret_santa_id, "can't be same as partner")
+			end
 
-		#for creation on nested attribute; make sure name and partner name is not the same
-		if partner && partner.try(:name) == name
-			errors.add(:name, "cannot have the same name as partner")
+			#for creation on nested attribute; make sure name and partner name is not the same
+			if partner && partner.try(:name) == name
+				errors.add(:name, "cannot have the same name as partner")
+			end
 		end
 	end
 
