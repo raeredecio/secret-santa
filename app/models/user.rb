@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :name
 	validates_uniqueness_of :name, :case_sensitive => false #name uniqueness is not case sensitive
 	validates_uniqueness_of :secret_santa_id, :allow_nil => true #can only have 1 santa
-	validate :new_santa_constraint, #custom validation
+	validate :new_santa_constraint #custom validation
 
 	accepts_nested_attributes_for :partner, :reject_if => lambda { |x| x[:name].blank? } #do not create if nest is not filled up
 
